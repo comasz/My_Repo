@@ -1,0 +1,13 @@
+
+systemctl start livirtd 
+virsh net-list
+## A virbr0 bridge interface was created.
+virsh net-start default
+## IP info
+ip a 
+arp -a
+## VM info
+virsh list --all
+virsh start 
+virsh net-dhcp-leases default
+## start VMs that use the Default network.
