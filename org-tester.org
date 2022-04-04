@@ -6,12 +6,12 @@ This repository contains an example dashboard for observing AppSec metrics.
 
   ----------
 * Quickstart
-#+BEGIN_SRC elisp
+
 1. [[https://docs.gitlab.com/ee/user/project/repository/forking_workflow.html#creating-a-fork][Fork]] current repository.
 
-[[https://docs.gitlab.com/ee/gitlab-basics/start-using-git.html#clone-a-repository][Clone]] forked repository to local HD.
+2. [[https://docs.gitlab.com/ee/gitlab-basics/start-using-git.html#clone-a-repository][Clone]] forked repository to local HD.
 
-Modify =TF_VAR_gitlab_namespace= input in accordance to the project or group artifacts that you would like to capture.
+3. Modify =TF_VAR_gitlab_namespace= input in accordance to the project or group artifacts that you would like to capture.
    
 Example: below ".gitlab-ci.yml" captures all artifacts in =gitlab.com/williamhillplc/infosec/devsecops/analyzers%= project.
 #+BEGIN_SRC 
@@ -25,21 +25,18 @@ default:
 variables:
   TF_VAR_gitlab_namespace: "gitlab.com/williamhillplc/infosec/devsecops/analyzers%"
 #+END_SRC
-    note: the character =%= means that anything after it will be accepted, as in =SQL=. 
+****** note: the character =%= means that anything after it will be accepted, as in =SQL=. 
 
 4. [[https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#create-a-personal-access-token][Create personal Access Token]]. Store in variable outlined in the next step.
 5. [[https://docs.gitlab.com/ee/ci/variables/#add-a-cicd-variable-to-a-project][Create GitLab CI/CD variable]]. Add personal Access Token: key: GITLAB_TOKEN  value: <generated access token>
 6. Add additional CI/CD variables: 
 
-    TF_VAR_newrelic_account_id : <Your NR Account ID> (generate NR APi sccout ID outlined in next step)
-    TF_VAR_newrelic_api_key : <Your NR API key> (generate NR APi key outlined in next step)
-    TF_VAR_permissions : "private"  (you can change to "public_read_only" or "public_read_write" if desired)
+    - TF_VAR_newrelic_account_id : <Your NR Account ID> (generate NR APi sccout ID outlined in next step)
+    - TF_VAR_newrelic_api_key : <Your NR API key> (generate NR APi key outlined in next step)
+    - TF_VAR_permissions : "private"  (you can change to "public_read_only" or "public_read_write" if desired)
 
-7. [[https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/][Create New Relic API Keys]]
-#+ATTR_HTML: width="100px"
-#+ATTR_ORG: :width 100
-[[./media/nr-api-keys.png]]
-[[./media/nr-create-api-key.png]]
+7. [[https://one.newrelic.com/launcher/api-keys-ui.api-keys-launcher][Navigate to New Relic API page]]. [[./media/nr-create-api-key.png]]
+
 
 8. Save, commit and push to =develop= branch.
 
